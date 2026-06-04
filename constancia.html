@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Constancia — XtraUJAT</title>
+  <link rel="stylesheet" href="constancia.css"/>
+  <!--
+    Fuentes exactas del PDF:
+    - Cinzel Bold    → CONSTANCIA
+    - EB Garamond    → nombre alumno + párrafo
+    - Montserrat     → resto de textos institucionales
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=EB+Garamond:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!--
+  ┌─────────────────────────────────────────────────────┐
+  │  VARIABLES DINÁMICAS — reemplaza con tu motor       │
+  │  {{nombreAlumno}}    {{matricula}}   {{carrera}}    │
+  │  {{folio}}           {{nombreEvento}}               │
+  │  {{fechaInicio}}     {{fechaFin}}    {{totalHoras}} │
+  │  {{nombreResponsable}} {{cargoResponsable}}         │
+  │  {{dependencia}}     {{urlFirma}}                   │
+  └─────────────────────────────────────────────────────┘
+-->
+
+<main class="cert">
+
+  <!-- Marco superior izquierdo -->
+  <img class="marco marco--tl"
+       src="https://i.imgur.com/yjU1nTe.png"
+       alt="" aria-hidden="true"/>
+
+  <!-- Marco inferior derecho -->
+  <img class="marco marco--br"
+       src="https://i.imgur.com/yuYeTWj.png"
+       alt="" aria-hidden="true"/>
+
+  <!-- ═══════════════════════════════════════════════
+       CABECERA
+  ═══════════════════════════════════════════════ -->
+  <header class="cabecera">
+
+    <!-- Logo UJAT — izquierda -->
+    <div class="col-logo col-logo--izq">
+      <img src="https://i.imgur.com/Eu3kxL5.png"
+           alt="UJAT" class="img-ujat"/>
+    </div>
+
+    <!-- Título central -->
+    <div class="col-titulo">
+      <!-- Decoración dorada -->
+      <img src="https://i.imgur.com/V240h1a.png"
+           alt="" aria-hidden="true" class="img-decoracion"/>
+      <!-- CONSTANCIA — Cinzel Bold 56pt -->
+      <h1 class="titulo">CONSTANCIA</h1>
+      <!-- Línea con rombo dorado -->
+      <div class="linea-rombo">
+        <span class="lr__raya"></span>
+        <span class="lr__rombo"></span>
+        <span class="lr__raya"></span>
+      </div>
+    </div>
+
+    <!-- Logo XtraUJAT — derecha -->
+    <div class="col-logo col-logo--der">
+      <img src="https://i.imgur.com/VFObGb7.png"
+           alt="XtraUJAT" class="img-xtra"/>
+    </div>
+
+  </header>
+
+  <!-- ═══════════════════════════════════════════════
+       CUERPO — alumno
+  ═══════════════════════════════════════════════ -->
+  <section class="cuerpo">
+
+    <!-- SE HACE CONSTAR QUE: — Montserrat Bold 15pt -->
+    <p class="constar">SE HACE CONSTAR QUE:</p>
+
+    <!-- {{nombreAlumno}} — EB Garamond 30pt
+         En una sola línea para evitar colapso de espacios en html2canvas -->
+    <h2 class="alumno">{{nombreAlumno}}</h2>
+
+    <!-- Separador -->
+    <div class="sep">
+      <span class="sep__raya"></span>
+      <span class="sep__rombo"></span>
+      <span class="sep__raya"></span>
+    </div>
+
+    <!-- Matrícula | Carrera — todo en una línea para preservar espacios -->
+    <p class="datos"><span class="d-lbl">MATRÍCULA:</span> <span class="d-val">{{matricula}}</span> <span class="d-pipe">|</span> <span class="d-lbl">CARRERA:</span> <span class="d-val">{{carrera}}</span></p>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       DESCRIPCIÓN — medalla + párrafo
+       Párrafo en flujo normal: {{nombreEvento}},
+       {{fechaInicio}}, {{fechaFin}}, {{totalHoras}}
+       se adaptan sin coordenadas fijas.
+  ═══════════════════════════════════════════════ -->
+  <section class="desc">
+
+    <!-- Medalla -->
+    <img src="https://i.imgur.com/RQJCLou.png"
+         alt="Constancia Oficial UJAT" class="medalla"/>
+
+    <!-- Párrafo — todo en líneas continuas para que html2canvas
+         no colapse los espacios entre texto y <span> -->
+    <p class="parrafo">Por haber acreditado satisfactoriamente {{nombreEvento}}, celebrado del {{fechaInicio}} al {{fechaFin}}, con una duración de {{totalHoras}} horas.</p>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       PIE — folio | firma | futuro
+  ═══════════════════════════════════════════════ -->
+  <footer class="pie">
+
+    <!-- Folio — x=8.7% y=80.2% del PDF -->
+    <div class="folio">
+      <span class="f-lbl">Folio: </span><span class="f-val">{{folio}}</span>
+    </div>
+
+    <!-- Firma + responsable — centrado -->
+    <div class="firma">
+      <!--
+        FIRMA DINÁMICA — reemplaza este div con:
+        <img src="{{urlFirma}}" class="firma-img" alt="Firma"/>
+      -->
+      <div class="firma-espacio"></div>
+      <div class="firma-linea"></div>
+      <!-- En una línea para preservar espacios -->
+      <p class="r-nombre">{{nombreResponsable}}</p>
+      <p class="r-cargo">{{cargoResponsable}}</p>
+      <p class="r-dep">{{dependencia}}</p>
+    </div>
+
+    <!-- Logo UJAT Futuro -->
+    <div class="futuro">
+      <p class="fut-ujat">UJAT</p>
+      <p class="fut-vision">CON VISIÓN DE<br><strong>FUTURO</strong></p>
+      <p class="fut-anios">2024–2028</p>
+    </div>
+
+  </footer>
+
+</main>
+</body>
+</html>

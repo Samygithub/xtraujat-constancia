@@ -1,0 +1,367 @@
+/* ═══════════════════════════════════════════════════════════
+   CONSTANCIA UJAT — CSS
+   Medidas extraídas exactamente del PDF con PyMuPDF
+   PDF original: 792 × 612 pt (carta horizontal)
+   HTML: 279mm × 216mm = equivalente exacto
+   ═══════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Colores exactos medidos del PDF */
+  --verde:  #075C0C;
+  --dorado: #C9A84C;
+  --negro:  #1A1A1A;
+  --gris:   #AAAAAA;
+
+  /* Fuentes exactas del PDF */
+  --f-cinzel:     'Cinzel', serif;           /* CONSTANCIA */
+  --f-garamond:   'EB Garamond', serif;      /* Nombre alumno + párrafo */
+  --f-montserrat: 'Montserrat', sans-serif;  /* Resto */
+
+  /* Escala: 1pt PDF = 0.352mm → 279mm/792pt = 0.352 */
+  --escala: 0.352mm;
+}
+
+@page {
+  size: 279mm 216mm;
+  margin: 0;
+}
+
+@media print {
+  body { background: white; padding: 0; }
+  .cert { box-shadow: none; }
+}
+
+body {
+  background: #d4d4d4;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CERTIFICADO — 279mm × 216mm
+   Equivale exactamente a 792 × 612 pt del PDF original
+═══════════════════════════════════════════════════════════ */
+.cert {
+  position: relative;
+  width:    279mm;
+  height:   216mm;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,.2);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MARCOS DECORATIVOS
+═══════════════════════════════════════════════════════════ */
+.marco {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  width: 52mm;
+  height: auto;
+}
+
+.marco--tl { top: 0; left: 0; }
+.marco--br { bottom: 0; right: 0; }
+
+/* ═══════════════════════════════════════════════════════════
+   CABECERA — logos + título
+═══════════════════════════════════════════════════════════ */
+.cabecera {
+  position: relative;
+  z-index: 5;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 5mm 14mm 0;
+  height: 36%;
+}
+
+.col-logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.col-logo--izq { justify-content: flex-start; width: 55mm; }
+.col-logo--der { justify-content: flex-end;   width: 45mm; }
+
+.img-ujat {
+  height: 22mm;
+  width: auto;
+  display: block;
+}
+
+.col-titulo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2mm;
+}
+
+.img-decoracion {
+  height: 11mm;
+  width: auto;
+  margin-bottom: 0.5mm;
+}
+
+.titulo {
+  font-family:    var(--f-cinzel);
+  font-size:      46pt;
+  font-weight:    700;
+  color:          var(--negro);
+  line-height:    1;
+  letter-spacing: 1px;
+  text-align:     center;
+  /* Forzar renderizado correcto en html2canvas */
+  white-space:    nowrap;
+}
+
+.linea-rombo {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  width: 72mm;
+  margin-top: 2mm;
+}
+
+.lr__raya {
+  flex: 1;
+  height: 1.5px;
+  background: var(--dorado);
+  display: block;
+}
+
+.lr__rombo {
+  width: 8px;
+  height: 8px;
+  background: var(--dorado);
+  transform: rotate(45deg);
+  display: block;
+  flex-shrink: 0;
+}
+
+.img-xtra {
+  height: 14mm;
+  width: auto;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CUERPO — nombre alumno, matrícula, carrera
+═══════════════════════════════════════════════════════════ */
+.cuerpo {
+  position: relative;
+  z-index: 5;
+  flex-shrink: 0;
+  text-align: center;
+  padding: 0 14mm 0;
+}
+
+.constar {
+  font-family:    var(--f-montserrat);
+  font-size:      11pt;
+  font-weight:    700;
+  color:          var(--negro);
+  letter-spacing: 2.5px;
+  margin-bottom:  3mm;
+}
+
+/* Nombre del alumno — white-space: normal garantiza que los espacios
+   entre palabras se respeten al renderizar con html2canvas */
+.alumno {
+  font-family:   var(--f-garamond);
+  font-size:     26pt;
+  font-weight:   600;
+  color:         var(--negro);
+  line-height:   1.1;
+  white-space:   normal;
+  word-spacing:  0.05em;
+  word-wrap:     break-word;
+  overflow-wrap: break-word;
+  margin-bottom: 2mm;
+}
+
+.sep {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 92mm;
+  margin: 0 auto 2mm;
+}
+
+.sep__raya {
+  flex: 1;
+  height: 1px;
+  background: var(--dorado);
+  display: block;
+}
+
+.sep__rombo {
+  width: 7px;
+  height: 7px;
+  background: var(--dorado);
+  transform: rotate(45deg);
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Matrícula y carrera — white-space: normal + word-spacing para html2canvas */
+.datos {
+  font-family:  var(--f-montserrat);
+  font-size:    9pt;
+  font-weight:  700;
+  white-space:  normal;
+  word-spacing: 0.05em;
+  display:      flex;
+  align-items:  center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.d-lbl { color: var(--negro); }
+.d-val { color: var(--verde); }
+.d-pipe { color: var(--gris); margin: 0 5px; }
+
+/* ═══════════════════════════════════════════════════════════
+   DESCRIPCIÓN — medalla + párrafo
+═══════════════════════════════════════════════════════════ */
+.desc {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 14mm 0 8mm;
+  gap: 4mm;
+}
+
+.medalla {
+  flex-shrink: 0;
+  width: 22mm;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Párrafo — white-space: normal + word-spacing aseguran que los espacios
+   entre texto corrido y <span> se respeten en html2canvas.
+   El texto fluye libremente: nombres de evento largos o cortos,
+   fechas y horas de cualquier longitud se ajustan solos. */
+.parrafo {
+  flex: 1;
+  font-family:   var(--f-garamond);
+  font-size:     13pt;
+  font-weight:   600;
+  color:         var(--negro);
+  line-height:   1.75;
+  text-align:    center;
+  white-space:   normal;
+  word-spacing:  0.05em;
+  word-wrap:     break-word;
+  overflow-wrap: break-word;
+}
+
+.verde { color: var(--verde); }
+
+/* ═══════════════════════════════════════════════════════════
+   PIE — folio | firma | logo futuro
+═══════════════════════════════════════════════════════════ */
+.pie {
+  position: relative;
+  z-index: 5;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 9mm 5.5mm;
+  min-height: 29mm;
+}
+
+.folio { font-family: var(--f-montserrat); font-size: 9pt; padding-bottom: 1mm; }
+.f-lbl { font-weight: 700; color: var(--negro); }
+.f-val { font-weight: 700; color: var(--verde); }
+
+.firma { text-align: center; min-width: 66mm; }
+
+.firma-espacio { height: 13mm; }
+
+.firma-img {
+  max-height: 13mm;
+  max-width: 48mm;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.firma-linea {
+  width: 56mm;
+  height: 1px;
+  background: var(--gris);
+  margin: 0 auto 1.5mm;
+}
+
+.r-nombre, .r-cargo, .r-dep {
+  font-family:  var(--f-montserrat);
+  font-weight:  700;
+  color:        var(--verde);
+  line-height:  1.4;
+  white-space:  normal;
+  word-spacing: 0.05em;
+}
+
+.r-nombre { font-size: 9.5pt; }
+.r-cargo  { font-size: 8.5pt; }
+.r-dep    { font-size: 8.5pt; }
+
+.futuro { padding-bottom: 1mm; text-align: right; }
+
+.fut-ujat {
+  font-family: var(--f-cinzel);
+  font-size: 13pt;
+  font-weight: 700;
+  color: var(--verde);
+  line-height: 1.1;
+}
+
+.fut-vision {
+  font-family: var(--f-montserrat);
+  font-size: 5pt;
+  color: var(--negro);
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+
+.fut-anios {
+  font-family: var(--f-montserrat);
+  font-size: 6.5pt;
+  color: var(--negro);
+  letter-spacing: 1px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE — solo para previsualización en navegador
+═══════════════════════════════════════════════════════════ */
+@media screen and (max-width: 1150px) {
+  body { padding: 10px; align-items: flex-start; }
+  .cert {
+    transform: scale(0.62);
+    transform-origin: top center;
+    margin-bottom: -34%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .cert {
+    transform: scale(0.36);
+    transform-origin: top center;
+    margin-bottom: -62%;
+  }
+}
